@@ -2,121 +2,127 @@
 
 ## 📌 Project Overview
 
-This project focuses on **Data Visualization and Storytelling** using the **Amazon Sales Dataset**. The objective was to transform raw sales and customer review data into meaningful visual insights using **Power BI**.
+This project focuses on **Data Visualization and Storytelling** using the **Amazon Sales Dataset** from Kaggle.  
+The objective was to transform raw sales and customer review data into meaningful visual insights using **Power BI**.
 
-The dashboard was designed to highlight important **business insights** related to product categories, customer satisfaction, discounts, pricing strategy, and customer engagement.
-
-The project emphasizes **storytelling through visualizations**, helping understand how product pricing, ratings, and discounts influence customer behavior on Amazon.
+The dashboard is structured as a **4-page storytelling report**, each page uncovering a different dimension of Amazon's product and customer data — from pricing strategies to customer satisfaction.
 
 ## 🎯 Objective
 
-To create meaningful and interactive visualizations that communicate a compelling business story from Amazon sales data.
+> To create meaningful and interactive visualizations that communicate a compelling business story from Amazon sales data — focusing on **business insights**, not just visuals.
 
 ## 🛠 Tools & Technologies Used
 
-- **Power BI Desktop**
-- **Microsoft Excel**
-- **Kaggle Dataset**
-- **Data Cleaning & Transformation**
-- **Data Visualization & Storytelling**
+| Tool | Purpose |
+|------|---------|
+| **Power BI Desktop** | Dashboard creation & visualization |
+| **Power Query Editor** | Data cleaning & transformation |
+| **Microsoft Excel / CSV** | Raw data handling |
+| **Kaggle** | Dataset source |
 
 ## 📂 Dataset Information
 
-**Dataset Name:** Amazon Sales Dataset
-
-**Source:** Kaggle
-
-Dataset Link: https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset
+**Dataset Name:** Amazon Sales Dataset  
+**Source:** [Kaggle — Amazon Sales Dataset](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset)
 
 ### Features Used
 
-- `product_id` → Product ID
-- `product_name` → Product Name
-- `category` → Product Category
-- `discounted_price` → Discounted Product Price
-- `actual_price` → Original Product Price
-- `discount_percentage` → Discount Percentage
-- `rating` → Customer Rating
-- `rating_count` → Number of Customer Reviews
-- `review_title` → Review Title
-- `review_content` → Product Review
+| Column | Description |
+|--------|-------------|
+| `product_id` | Unique Product Identifier |
+| `product_name` | Name of the Product |
+| `category` | Product Category (pipe-separated hierarchy) |
+| `discounted_price` | Price after discount (₹) |
+| `actual_price` | Original MRP (₹) |
+| `discount_percentage` | Discount offered (%) |
+| `rating` | Average customer rating (out of 5) |
+| `rating_count` | Number of customer reviews |
+| `review_title` | Short review headline |
+| `review_content` | Full customer review text |
+
+## 🧹 Data Preparation & Cleaning
+
+All cleaning was performed inside **Power Query Editor** in Power BI before building visualizations.
+
+### Steps Performed
+
+- ✅ Removed irrelevant columns: `img_link`, `product_link`, `user_id`, `review_id`
+- ✅ Removed `₹` symbols and commas from `discounted_price` and `actual_price`
+- ✅ Removed `%` symbol from `discount_percentage` and converted to numeric
+- ✅ Fixed data types for prices, ratings, rating counts, and discount percentage
+- ✅ Handled null values and inconsistent formatting
+- ✅ Extracted `main_category` from the pipe-separated category column
+- ✅ Created calculated measures for KPI cards (Avg Rating, Avg Discount %, Total Reviews)
 
 
-# 🧹 Data Preparation & Cleaning
+## 📈 Dashboard Pages & Data Story
 
-The dataset was cleaned and transformed in **Power Query Editor** before creating visualizations.
+### Page 1 — 🏠 Overview Dashboard
+**Story: "What does Amazon's product landscape look like?"**
 
-### Cleaning Steps Performed
+| Visual | Fields Used |
+|--------|-------------|
+| Bar Chart — Product Count by Category | `category`, `product_name` (count) |
+| Bar Chart — Sum of Ratings by Category | `category`, `rating` |
 
-✔ Removed unnecessary columns:
-- `img_link`
-- `product_link`
-- `user_id`
-- `review_id`
+**💡 Key Insight:**  
+Computers & Accessories and Electronics dominate Amazon's catalog, indicating stronger market presence and higher customer demand in these segments.
 
-✔ Fixed data types for:
-- Prices
-- Ratings
-- Rating counts
-- Discount percentage
 
-✔ Removed currency symbols (`₹`) and commas from price columns.
+### Page 2 — 💰 Pricing Story
+**Story: "How is Amazon playing the discount game?"**
 
-✔ Converted numerical columns into proper numeric format.
+| Visual | Fields Used |
+|--------|-------------|
+| Bar Chart — Top Discounted Products | `product_name`, `discount_percentage` |
+| Clustered Bar Chart — Actual vs Discounted Price by Category | `category`, `actual_price`, `discounted_price` |
+| Slicers (Filters) | `category`, `rating`, `discount_percentage`, `product_name` |
 
-✔ Handled null values and formatting issues.
+**💡 Key Insight:**  
+Brands like Fire-Boltt and boAt receive exceptionally high discounts — this is a deliberate strategy to boost visibility and sales volume. The large gap between actual and discounted prices across Electronics reflects aggressive competitive pricing.
 
-✔ Created calculated measures for analysis.
+### Page 3 — ⭐ Customer Satisfaction Story
+**Story: "Are customers happy, and who is engaging the most?"**
 
-# 📈 Dashboard Pages & Storytelling
+| Visual | Fields Used |
+|--------|-------------|
+| Histogram — Rating Distribution | `rating`, `product_name` (count) |
+| Treemap — Review Count by Category | `category`, `rating_count` |
 
-## 1️⃣ Overview Dashboard
+**💡 Key Insight:**  
+Most products receive ratings between **4.0 and 4.5**, showing overall positive customer satisfaction. Electronics (Headphones, Mobiles) and Computers & Accessories generate the highest review counts — indicating high buyer engagement in these categories.
 
-### Visualizations
-- Product Count by Category
-- Customer Ratings by Category
+### Page 4 — 📋 Summary & Business Insights
+**Story: "The four numbers every decision-maker needs."**
 
-### Key Insight
-Electronics and computer-related categories dominate Amazon’s marketplace, indicating higher customer demand and stronger market presence.
+| KPI Card | Value | Interpretation |
+|----------|-------|----------------|
+| **Total Products** | 1K | Broad catalog analyzed |
+| **Average Rating** | 4.10 | Customers are broadly satisfied |
+| **Average Discount %** | 0.48 (48%) | Aggressive pricing strategy platform-wide |
+| **Total Review Count** | 27M | Massive customer engagement & social proof |
 
-## 2️⃣ Pricing Story
+## 🔍 Final Business Insights
 
-### Visualizations
-- Top Discounted Products
-- Actual Price vs Discounted Price
-
-### Key Insight
-Amazon uses discount strategies to improve customer engagement and increase product sales. Electronics products receive higher discounts compared to other categories.
-
-## 3️⃣ Customer Satisfaction Story
-
-### Visualizations
-- Product Rating Distribution
-- Customer Review Count by Category
-
-### Key Insight
-Most products maintain ratings above **4.0**, indicating strong customer satisfaction and trust in product quality.
-
-## 4️⃣ Summary & Business Insights
-
-### KPI Metrics Used
-- Total Products
-- Average Rating
-- Average Discount Percentage
-- Total Review Count
-
-### Final Business Insights
-- Electronics dominate Amazon sales categories.
-- Most products receive positive customer ratings.
-- Discounts significantly influence product visibility.
-- Customer engagement is higher for top-rated products.
-- Review activity helps identify high-performing categories.
+1. **Electronics dominates** Amazon's catalog by product count and customer reviews.
+2. **48% average discount** reflects a platform-wide aggressive pricing strategy.
+3. **Most products rated 4.0–4.5** — customers are broadly satisfied with purchases.
+4. **High review counts** in Electronics and Computer Accessories signal strong buyer engagement.
+5. **Brands with heavy discounts** (Fire-Boltt, boAt) tend to dominate category visibility.
 
 ## 📁 Repository Structure
 
-```text
+```
 amazon-sales-data-visualization/
-│── Amazon Sales Dashboard.pbix
-│── Amazon Sales Dashboard.pdf
-│── README.md
-│── amazon.csv
+│
+├── Amazon Sales Dashboard.pbix      ← Power BI source file
+├── Amazon Sales Dashboard.pdf       ← Exported dashboard (deliverable)
+├── amazon.csv                       ← Raw dataset from Kaggle
+└── README.md                        ← Project documentation (this file)
+```
+
+## 👤 Author
+
+**Project:** Data Visualization & Storytelling — Task 2  
+**Tool Used:** Power BI Desktop  
+**Dataset:** Amazon Sales Dataset (Kaggle)
