@@ -120,9 +120,3 @@ amazon-sales-data-visualization/
 ├── amazon.csv                       ← Raw dataset from Kaggle
 └── README.md                        ← Project documentation (this file)
 ```
-
-## 👤 Author
-
-**Project:** Data Visualization & Storytelling — Task 2  
-**Tool Used:** Power BI Desktop  
-**Dataset:** Amazon Sales Dataset (Kaggle)
